@@ -1,0 +1,117 @@
+body {
+    background-color: #5BC0DE;
+}
+
+#page-heading {
+    height: 10vh;
+    font-size: 8vh;
+    display: flex;
+    justify-content: center;
+}
+
+.flex-separate-horizontal, .flex-inline-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex-separate-horizontal {
+    justify-content: space-between;
+}
+
+.flex-inline-text p, .flex-separate-horizontal p {
+    margin-bottom: 0;
+}
+
+#stack-controls .btn {
+    height: 6vh;
+    width: 6vh;
+    font-size: 5vh;
+    padding: 0;
+    background-color: #79EFAD;
+    border-color: rgba(122, 235, 165, 0.53);
+}
+
+#delete-counter {
+    background-color: yellow;
+    margin-left: 5vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+}
+
+.card {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1; /* place above the stack itself */
+    height: 15vh;
+    font-size: 2vh;
+    margin-bottom: 0;
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+}
+
+.btn-centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.plot-point .btn {
+    height: 7vh;
+    width: 7vh;
+    font-size: 5vh;
+    padding: 0;
+}
+
+.card-heading {
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 0.2vh;
+}
+
+#section-headers {
+    height: 4vh;
+    margin-bottom: 2vh;
+    font-size: 3.5vh;
+    font-weight: bold;
+}
+
+#body {
+    height: 84vh;
+}
+
+.heap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.drop-zone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.drop-target {
+    background-color: #29e;
+    border: dashed black;
+}
+
+#stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #79EFAD;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.bottom-bordered {
+    border-bottom: dashed black;
+}

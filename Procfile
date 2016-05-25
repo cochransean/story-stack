@@ -1,0 +1,1 @@
+web: gunicorn storyStack.wsgi --log-file -

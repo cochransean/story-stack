@@ -1,0 +1,23 @@
+{
+  "name": "story-stack",
+  "version": "1.0.0",
+  "description": "Stack your story!",
+  "main": "index.js",
+  "dependencies": {
+    "bower": "1.7.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cochransean/storyStack.git"
+  },
+  "author": "Sean and Melissa Cochran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cochransean/storyStack/issues"
+  },
+  "homepage": "https://github.com/cochransean/storyStack#readme"
+}
