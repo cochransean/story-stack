@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'storyStack.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db9r37j5i7i9ej',
-        'USER': 'fkwnsgvgzqgzir',
-        'PASSWORD': 'mH9wLQN20KrQAbPAFKJKF-n7C-',
-        'HOST': 'ec2-54-243-201-116.compute-1.amazonaws.com',
+        'NAME': 'storyStack2',
+        'USER': 'cochransean',
+        'PASSWORD': 'p$bC@&xQwhuN5uEvx!FhywdL',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
