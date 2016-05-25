@@ -1,2 +1,0 @@
-So that Git uploads this folder and Heroku finds static folders where it looks for them.
-Can delete this file when there are other static files here.
