@@ -80,17 +80,10 @@ WSGI_APPLICATION = 'storyStack.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'storyStack2',
-        'USER': 'cochransean',
-        'PASSWORD': 'p$bC@&xQwhuN5uEvx!FhywdL',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    'default': {}
 }
 db_from_env = dj_database_url.config()
-DATABASES['default'] = db_from_env
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
