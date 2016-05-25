@@ -80,7 +80,9 @@ WSGI_APPLICATION = 'storyStack.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DATABASES = {
-    'default': {}
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+    }
 }
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
