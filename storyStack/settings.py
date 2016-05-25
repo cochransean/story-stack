@@ -36,7 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.auth',
-    'stack',
+    'stack.apps.StackConfig',
     'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -80,8 +80,17 @@ WSGI_APPLICATION = 'storyStack.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DATABASES = {
-    "default": dj_database_url.config(default="postgresql://"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db9r37j5i7i9ej',
+        'USER': 'fkwnsgvgzqgzir',
+        'PASSWORD': 'mH9wLQN20KrQAbPAFKJKF-n7C-',
+        'HOST': 'ec2-54-243-201-116.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
 }
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
