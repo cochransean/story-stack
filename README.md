@@ -6,6 +6,7 @@ Development Environment Setup:
 1. Run `bower install` from the command line in the project's directory to install the bower dependencies.
 2. Use `pip` to install the dependencies listed in `requirements.txt`.
 3. A local installation of Postgres is required to run the app locally.  On a Mac, you can install [PostgresApp](http://postgresapp.com/) without any additional configuration in setup.py. If not using PostgressApp, you will need to configure your installation to run with the database configuration used in settings.py.
+4. Uncomment the lines of `setup.py` referring to local database configuration. When you push changes to git, comment these lines out again.
 
 The master branch automatically pushed to Heroku, to allow for user testing and remote development.  The current master can be viewed at [https://story-stack.herokuapp.com/](https://story-stack.herokuapp.com/).
 
