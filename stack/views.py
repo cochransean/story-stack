@@ -14,6 +14,7 @@ def stack_index(request):
     initial_hand = {
         'plot_cards': plot_cards.draw_cards(HAND_SIZE)
     }
+    print(initial_hand)
     return render(request, 'stack/index.html', initial_hand)
 
 

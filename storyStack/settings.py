@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'stack'
+    'stack.apps.StackConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'storyStack.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "cochransean",
-        "USER": "cochransean",
-        "PASSWORD": "",
-        "HOST": "localhost",
-        "PORT": "5432",
+        #"NAME": "cochransean",
+        #"USER": "cochransean",
+        #"PASSWORD": "",
+        #"HOST": "localhost",
+        #"PORT": "5432",
     }
 }
 db_from_env = dj_database_url.config()
@@ -131,6 +131,7 @@ STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
+    os.path.join(BASE_DIR, 'static')
 ]
 
 # Simplified static file serving.
