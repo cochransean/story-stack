@@ -22,7 +22,7 @@ function initDesktop() {
     var draggableCards = new Draggable(".card", cardAreas);
     
     // create card areas
-    var heap = new CardArea(".heap", ".drop-zone", draggableCards, false, cardAreas);
+    var heap = new CardArea(".heap", ".heap-drop drop-zone", draggableCards, false, cardAreas);
     var stack = new CardArea("#stack", ".drop-zone", draggableCards, false, cardAreas);
 
     // update text on delete counter
