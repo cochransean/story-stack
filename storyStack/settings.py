@@ -82,11 +82,12 @@ WSGI_APPLICATION = 'storyStack.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        #"NAME": "cochransean",
-        #"USER": "cochransean",
-        #"PASSWORD": "",
-        #"HOST": "localhost",
-        #"PORT": "5432",
+        # Uncomment these lines for local development
+        # "NAME": "cochransean",
+        # "USER": "cochransean",
+        # "PASSWORD": "",
+        # "HOST": "localhost",
+        # "PORT": "5432",
     }
 }
 db_from_env = dj_database_url.config()
