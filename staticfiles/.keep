@@ -1,1 +1,0 @@
-This directory is for Heroku to collect static files into using "collectstatic" upon deployment, per settings.py.

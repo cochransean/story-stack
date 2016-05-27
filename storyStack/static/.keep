@@ -1,2 +1,0 @@
-This is needed since collecstatic searches for files in this directory and it will not upload to Git if empty.
-It prevents failures when heroku builds the app.
