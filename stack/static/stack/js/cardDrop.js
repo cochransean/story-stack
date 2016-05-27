@@ -48,7 +48,7 @@ CardDrop.prototype.dropListener = function (event) {
 
     // add border back on adjacent if not dictated not to in the class and not hovering over heap
     var previousElement = $(dropzoneElement).prev();
-    if (!previousElement.hasClass("bottom-no-border") && $("#heap").parents().length === 0) {
+    if (!previousElement.hasClass("bottom-no-border") && !$(dropZoneElement).hasClass("heap-drop")) {
         $(dropzoneElement).prev().addClass('bottom-bordered');
     }
 
@@ -82,7 +82,7 @@ CardDrop.prototype.dragLeaveListener = function(event) {
 
     // add border back on adjacent if not dictated not to in the class and not hovering over heap
     var previousElement = $(dropzoneElement).prev();
-    if (!previousElement.hasClass("bottom-no-border") && $("#heap").parents().length === 0) {
+    if (!previousElement.hasClass("bottom-no-border") && !$(dropZoneElement).hasClass("heap-drop")) {
         $(dropzoneElement).prev().addClass('bottom-bordered');
     }
 };
