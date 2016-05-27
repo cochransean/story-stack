@@ -87,6 +87,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    /* adding height here redundantly because bootstrap columns don't work properly on heroku otherwise */
     height: 84vh;
 }
 
@@ -111,6 +112,8 @@ body {
     background-color: #79EFAD;
     padding-left: 0;
     padding-right: 0;
+    /* adding height here redundantly because bootstrap columns don't work properly on heroku otherwise */
+    height: 84vh;
 }
 
 .bottom-bordered {
