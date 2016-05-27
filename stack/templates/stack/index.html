@@ -35,7 +35,7 @@
                 <div class="heap col-xs-3">
             {% endif %}
             {% with counter_value=forloop.counter|stringformat:"s" %}
-                <div id="{{ "heapDrop"|add:counter_value }}" class="heap-drop drop-zone">
+                <div id="{{ "heapDrop"|add:counter_value }}" class="drop-zone">
                     <div id="{{ 'plotPoint'|add:counter_value }}" data-plot-point-id="{{ plot_point.id }}" class="plot-point card card-block">
                         <div>
                             <p class="card-heading">Plot Point</p>
