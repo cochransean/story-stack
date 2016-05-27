@@ -88,7 +88,8 @@ body {
     flex-direction: column;
     justify-content: space-around;
     /* adding height here redundantly because bootstrap columns don't work properly on heroku otherwise */
-    height: 84vh;
+    margin-top: 1vh;
+    height: 83vh;
 }
 
 .drop-zone {
@@ -113,7 +114,8 @@ body {
     padding-left: 0;
     padding-right: 0;
     /* adding height here redundantly because bootstrap columns don't work properly on heroku otherwise */
-    height: 84vh;
+    margin-top: 1vh;
+    height: 83vh;
 }
 
 .bottom-bordered {
