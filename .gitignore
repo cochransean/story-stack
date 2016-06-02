@@ -135,3 +135,6 @@ jspm_packages
 
 # Ignore Bower components (can be installed separately with 'bower install' from project directory
 bower_components
+
+# Ignore staticfiles collection directory (run on Heroku again)
+staticfiles

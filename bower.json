@@ -5,8 +5,8 @@
     "jquery": "^2.2.3",
     "bootstrap": "v4.0.0-alpha.2",
     "tether": "^1.3.2",
-    "components-font-awesome": "^4.6.1",
     "interact": "interact.js#^1.2.6",
-    "velocity": "^1.2.3"
+    "velocity": "^1.2.3",
+    "components-font-awesome": "^4.6.3"
   }
 }
