@@ -30,7 +30,7 @@
         </div>
     </div>
     <div id="body" class="row">
-        {% for plot_point in plot_cards %}
+        {% for plot_point in request.session.current_hand %}
             {% if forloop.first %}
                 <div class="heap col-xs-3">
             {% endif %}

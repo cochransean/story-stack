@@ -81,12 +81,12 @@ WSGI_APPLICATION = 'storyStack.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'storyStack2',
-        'USER': 'cochransean',
-        'PASSWORD': 'p$bC@&xQwhuN5uEvx!FhywdL',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        # "NAME": "cochransean",
+        # "USER": "cochransean",
+        # "PASSWORD": "",
+        # "HOST": "localhost",
+        # "PORT": "5432",
     }
 }
 db_from_env = dj_database_url.config()
@@ -136,3 +136,6 @@ STATICFILES_DIRS = [
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+# To allow arbitrary python types to be saved in session
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
