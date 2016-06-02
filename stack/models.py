@@ -18,5 +18,5 @@ class PlotPoint(models.Model):
             'point_text': self.point_text,
             'uses': self.uses,
             'pub_data': self.pub_date,
-            'deletes': self.delete
+            'deletes': self.deletes
         }

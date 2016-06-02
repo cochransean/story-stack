@@ -22,5 +22,4 @@ def new_plot_points(request, number_requested=1):
         number_requested = HAND_SIZE
     new_points = request.session['plot_cards_deck'].draw_cards(number_requested)
     data = json.dumps(new_points, cls=DjangoJSONEncoder)
-    print(data)
     return HttpResponse(data, content_type='application/json')
