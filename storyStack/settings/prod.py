@@ -16,6 +16,4 @@ db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
 # Allow serving from Heroku
-ALLOWED_HOSTS = [
-    'herokuapp.com'
-]
+ALLOWED_HOSTS = ['*']
