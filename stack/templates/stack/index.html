@@ -6,9 +6,9 @@
     <title>Story Stack</title>
 
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'stack/css/style.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/components-font-awesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" />
 </head>
 
 <body>
@@ -71,12 +71,12 @@
     {# Set javascript variable for requesting new cards to enable easier later changes to URL structure #}
     var plotPointRequestUrl = "{% url 'stack:new_plot_points' %}";
 </script>
-<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
-<script src="{% static 'bower_components/tether/dist/js/tether.min.js' %}"></script>
-<script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'bower_components/velocity/velocity.min.js' %}"></script>
-<script src="{% static 'bower_components/velocity/velocity.ui.min.js' %}"></script>
-<script src="{% static 'bower_components/interact/interact.js' %}"></script>
+<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'tether/dist/js/tether.min.js' %}"></script>
+<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'velocity-animate/velocity.min.js' %}"></script>
+<script src="{% static 'velocity-animate/velocity.ui.min.js' %}"></script>
+<script src="{% static 'interact.js/interact.js' %}"></script>
 <script src="{% static 'stack/js/helpers.js' %}"></script>
 <script src="{% static 'stack/js/cardArea.js' %}"></script>
 <script src="{% static 'stack/js/cardDrop.js' %}"></script>
