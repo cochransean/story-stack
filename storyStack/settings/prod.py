@@ -3,7 +3,7 @@ import dj_database_url
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
