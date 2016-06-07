@@ -1,6 +1,9 @@
 {
   "name": "story-stack",
   "version": "1.0.0",
+  "engines": {
+    "node": "5.9.1"
+  },
   "description": "Stack your story!",
   "main": "index.js",
   "dependencies": {

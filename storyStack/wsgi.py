@@ -13,6 +13,7 @@ from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise
 
 # Note that DJANGO settings variable is set in Heroku config vars for deployment
+# in Heroku: DJANGO_SETTINGS_MODULE = storyStack.settings.prod
 
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
