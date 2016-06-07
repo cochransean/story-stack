@@ -12,8 +12,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise
 
-# Note that DJANGO settings variable is set in package.json upon buildout of dependencies in Heroku, to prevent
-# Heroku-specific errors
+# Note that DJANGO settings variable is set in Heroku config vars for deployment
 
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
