@@ -20,6 +20,6 @@ urlpatterns = [
     url(r'^stack/', include('stack.urls')),
 
     # I am temporarily having main page redirect to stack application for testing
-    url(r'^$', include('stack.urls')),
+    url(r'^', include('stack.urls')),
     url(r'^admin/', admin.site.urls),
 ]
