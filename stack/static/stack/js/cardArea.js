@@ -9,14 +9,10 @@
  *      _relatedAreas: all card areas that need to be included in calculating drop points (array of cardAreas), optional
  *          expects a key "areas" pointing to an array of related areas (to pass by reference)
  */
+import {Draggable} from './draggable.js';
+import {CardDrop} from './cardDrop.js';
 
-CardArea = function(_parentElement, _classSelector, _draggableCards, _insertBehavior, _relatedAreas) {
-
-    if (CardArea.arguments.length < 3) {
-        console.log("parentElement, classSelector, and draggableCards are required parameters.");
-        return
-    }
-
+var CardArea = function(_parentElement, _classSelector, _draggableCards, _insertBehavior, _relatedAreas) {
     this.parentElement = _parentElement;
     this.classSelector = _classSelector;
     this.insertBehavior = _insertBehavior;
@@ -87,3 +83,5 @@ CardArea.prototype.updateTargets = function () {
     var event = new CustomEvent("Targets Updated", { 'detail': cardArea });
     document.dispatchEvent(event);
 };
+
+export {CardArea};

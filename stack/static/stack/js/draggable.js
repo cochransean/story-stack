@@ -5,12 +5,10 @@
  *      _relatedAreas: all card areas that need to be included in calculating drop points (array of cardAreas), optional
  *          expects a key "areas" pointing to an array of related areas (to pass by reference)
  */
+import {CardArea} from './cardArea.js';
+import {CardDrop} from './cardDrop.js';
 
-Draggable = function(_selector, _relatedAreas) {
-    if (Draggable.arguments.length < 1) {
-        console.log("Selector is a required argument.");
-        return
-    }
+var Draggable = function(_selector, _relatedAreas) {
     this.selector = _selector;
     this.relatedAreas = _relatedAreas ? _relatedAreas: []; // init empty array if param not provided
     this.init();
@@ -102,3 +100,5 @@ Draggable.prototype.translateElement = function(element, x, y) {
         element.style.transform =
             'translate(' + x + 'px, ' + y + 'px)';
 };
+
+export {Draggable};

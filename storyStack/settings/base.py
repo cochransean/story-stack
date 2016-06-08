@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'main', # supply custom runserver for webpack watcher
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'stack.apps.StackConfig',
+    'webpack_loader'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -111,7 +113,8 @@ STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'node_modules'),
-    os.path.join(PROJECT_ROOT, 'static')
+    os.path.join(PROJECT_ROOT, 'static'),
+    os.path.join(PROJECT_ROOT, 'static/assets')
 ]
 
 # Simplified static file serving.
@@ -120,3 +123,12 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # To allow arbitrary python types to be saved in session
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+    }
+}

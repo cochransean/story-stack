@@ -4,8 +4,10 @@
  * Parameters:
  *      _id: the unique name associated with each (string)
  */
+import {Draggable} from './draggable.js';
+import {CardArea} from './cardArea.js';
 
-CardDrop = function(_id) {
+var CardDrop = function(_id) {
     this.id = _id;
     this.init();
 };
@@ -86,3 +88,5 @@ CardDrop.prototype.dragLeaveListener = function(event) {
         $(dropzoneElement).prev().addClass('bottom-bordered');
     }
 };
+
+export {CardDrop};

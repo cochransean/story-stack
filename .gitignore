@@ -138,3 +138,6 @@ bower_components
 
 # Ignore staticfiles collection directory (run on Heroku again)
 staticfiles
+
+# Ignore virtual environment for python
+env
