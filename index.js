@@ -4,3 +4,4 @@ require("js/cardDrop.js");
 require("js/draggable.js");
 require("js/cardArea.js");
 require("js/main.js");
+// this is a test
