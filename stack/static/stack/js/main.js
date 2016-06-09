@@ -1,16 +1,12 @@
 /**
  *  Main javascript for the stack component of StoryStack
  */
-import {Draggable} from './draggable.js';
-import {CardDrop} from './cardDrop.js';
-import {CardArea} from './cardArea.js';
-
+import ReactDOM from 'react-dom';
+import App from './app.jsx';
 
 // Global Variables
 var deletesLeft = 10;
 var deleteCounter = $("#delete-counter");
-var cardAreas = {"areas": []}; // using object so that it passes by reference
-
 
 
 // when DOM is loaded
@@ -24,19 +20,8 @@ $(function() {
 // prepares interactions for desktop and tablet
 function initDesktop() {
 
-    // make cards draggable
-    var draggableCards = new Draggable(".card", cardAreas);
-    
-    // create card areas
-    var heap = new CardArea(".heap", ".drop-zone", draggableCards, false, cardAreas);
-    var stack = new CardArea("#stack", ".drop-zone", draggableCards, false, cardAreas);
+    ReactDOM.render(<App />, document.getElementById('root'));
 
-    // update text on delete counter
-    deleteCounter.text(deletesLeft);
-
-    // setup card deletions
-    var deleteButtons = $( ".delete-card-btn" );
-    deleteButtons.click(deleteCard)
 }
 
 

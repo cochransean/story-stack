@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'main', # supply custom runserver for webpack watcher
+    'main',  # supply custom runserver for webpack watcher
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
