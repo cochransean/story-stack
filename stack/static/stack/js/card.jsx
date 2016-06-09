@@ -25,11 +25,11 @@ class Card extends Component {
 
         return connectDragSource(
             <div className="plot-point card card-block" style={{
-                opacity: isDragging ? 0.5 : 1,
+                opacity: isDragging ? 0.5 : 1
             }}>
                 <div>
                     <p className="card-heading">Plot Point</p>
-                    <p className="card-text">This is an example of some text that could appear here.</p>
+                    <p className="card-text">{this.props.text}</p>
                 </div>
                 <div>
                     <button className="delete-card-btn btn btn-centered btn-primary"><i className="fa fa-bomb" aria-hidden="true"></i></button>
