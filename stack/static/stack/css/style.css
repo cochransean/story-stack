@@ -83,7 +83,7 @@ body {
     height: 84vh;
 }
 
-.heap {
+.bank {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -106,7 +106,7 @@ body {
     border: dashed black;
 }
 
-#stack {
+.stack {
     display: flex;
     flex-direction: column;
     justify-content: space-around;

@@ -9,10 +9,10 @@ export default class DropZone extends Component {
     render() {
 
         // determine class of drop zone; leave border off last in stack because it is at bottom of screen
-        var dropClass = classNames({
+        let dropClass = classNames({
             'drop-zone': true,
-            'bottom-bordered': this.props.location[0] === 'stack' && !this.props.last,
-            'bottom-no-border': this.props.location[0] === 'stack' && this.props.last
+            'bottom-bordered': this.props.location[0] === 'stack' && !this.props.bottom,
+            'bottom-no-border': this.props.location[0] === 'stack' && this.props.bottom
         });
 
         return (

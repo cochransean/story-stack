@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Headers from './headers.jsx';
 import Stack from './stack.jsx';
+import Bank from './bank.jsx';
 
 export default class App extends Component {
 
@@ -18,6 +19,7 @@ export default class App extends Component {
             <div className="container-fluid">
                 <Headers />
                 <div id="body" className="row">
+                    <Bank />
                     <Stack />
                 </div>
             </div>
