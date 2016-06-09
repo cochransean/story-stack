@@ -2,8 +2,10 @@ import React, {Component, PropTypes} from 'react';
 import Headers from './headers.jsx';
 import Stack from './stack.jsx';
 import Bank from './bank.jsx';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
-export default class App extends Component {
+class App extends Component {
 
     componentDidMount() {
         const numberOfCards = 9;
@@ -26,3 +28,5 @@ export default class App extends Component {
         )
     }
 };
+
+export default DragDropContext(HTML5Backend)(App);

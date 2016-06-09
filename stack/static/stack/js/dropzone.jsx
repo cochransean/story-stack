@@ -16,7 +16,9 @@ export default class DropZone extends Component {
         });
 
         return (
-            <div className={dropClass}></div>
+            <div className={dropClass}>
+                {this.props.children}
+            </div>
         );
     }
 };

@@ -1,21 +1,47 @@
 /**
  * Created by cochransean on 6/9/16.
  */
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
+import { ItemTypes } from './Constants';
+import { DragSource } from 'react-dnd';
 
-const Card = () => {
-
-    return (
-        <div className="plot-point card card-block">
-            <div>
-                <p className="card-heading">Plot Point</p>
-                <p className="card-text">This is an example of some text that could appear here.</p>
-            </div>
-            <div>
-                <button className="delete-card-btn btn btn-centered btn-primary"><i className="fa fa-bomb" aria-hidden="true"></i></button>
-            </div>
-        </div>
-    );
+const cardSource = {
+    beginDrag(props) {
+        return {};
+    }
 };
 
-export default Card;
+function collect(connect, monitor) {
+    return {
+        connectDragSource: connect.dragSource(),
+        isDragging: monitor.isDragging()
+    }
+}
+
+class Card extends Component {
+
+    render() {
+        const { connectDragSource, isDragging } = this.props;
+
+        return connectDragSource(
+            <div className="plot-point card card-block" style={{
+                opacity: isDragging ? 0.5 : 1,
+            }}>
+                <div>
+                    <p className="card-heading">Plot Point</p>
+                    <p className="card-text">This is an example of some text that could appear here.</p>
+                </div>
+                <div>
+                    <button className="delete-card-btn btn btn-centered btn-primary"><i className="fa fa-bomb" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        );
+    }
+}
+
+Card.propTypes = {
+    connectDragSource: PropTypes.func.isRequired,
+    isDragging: PropTypes.bool.isRequired
+};
+
+export default DragSource(ItemTypes.CARD, cardSource, collect)(Card);

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import DropZone from './dropzone.jsx';
+import Card from './card.jsx';
 var classNames = require('classnames');
 
 export default class Column extends Component {
-    
 
     render() {
         let columnClass = classNames({
@@ -15,7 +15,9 @@ export default class Column extends Component {
 
         // leave the last slot to be rendered in-line since it has different formatting
         for (let i = 0; i < this.props.cardsPer; i++) {
-            rows.push(<DropZone key={i} location={[this.props.location, i]} bottom={(i + 1) % this.props.cardsPer === 0} />);
+            rows.push(<DropZone key={i} location={[this.props.location, i]} bottom={(i + 1) % this.props.cardsPer === 0}>
+                <Card />
+            </DropZone>);
         }
 
         return (
