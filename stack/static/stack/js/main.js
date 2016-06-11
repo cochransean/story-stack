@@ -2,7 +2,7 @@
  *  Main javascript for the stack component of StoryStack
  */
 import ReactDOM from 'react-dom';
-import App from './app.jsx';
+import App from './components/app.jsx';
 
 // Global Variables
 var deletesLeft = 10;

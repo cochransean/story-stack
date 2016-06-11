@@ -16,11 +16,13 @@ export default class Column extends Component {
         // leave the last slot to be rendered in-line since it has different formatting
         for (let i = 0; i < this.props.cardsPerColumn; i++) {
 
-            // push cards where state indicates they are occupied
-            let occupied = this.props.state[i];
+            // push cards where state indicates they are occupied (check if array is empty)
+            let occupied = this.props.state[i].length > 0;
+
+            // If desired, could later add capability for multiple cards here by looping over array
             if (occupied) {
                 rows.push(<DropZone key={i} location={[this.props.location, i]} bottom={(i + 1) % this.props.cardsPerColumn === 0}>
-                    <Card text={this.props.state[i]['point_text']} />
+                    <Card card={this.props.state[i][0]} />
                 </DropZone>);
             }
             else {

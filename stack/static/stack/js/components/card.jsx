@@ -2,7 +2,7 @@
  * Created by cochransean on 6/9/16.
  */
 import React, {Component, PropTypes} from 'react';
-import { ItemTypes } from './Constants';
+import { ItemTypes } from '../constants';
 import { DragSource } from 'react-dnd';
 
 const cardSource = {
@@ -29,7 +29,7 @@ class Card extends Component {
             }}>
                 <div>
                     <p className="card-heading">Plot Point</p>
-                    <p className="card-text">{this.props.text}</p>
+                    <p className="card-text">{this.props.card.point_text}</p>
                 </div>
                 <div>
                     <button className="delete-card-btn btn btn-centered btn-primary"><i className="fa fa-bomb" aria-hidden="true"></i></button>
