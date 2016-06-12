@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Counter from './counter'
 
 export default class Headers extends Component {
 
@@ -10,7 +11,7 @@ export default class Headers extends Component {
                 </div>
                 <div id="section-headers" className="row">
                     <div className="flex-inline-text col-xs-9">
-                        <p>The Bank</p><p id="delete-counter"></p>
+                        <p>The Bank</p><Counter counter={this.props.counter}/>
                     </div>
                     <div className="flex-separate-horizontal col-xs-3">
                         <p>The Stack</p>

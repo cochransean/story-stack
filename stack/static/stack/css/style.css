@@ -32,11 +32,15 @@ body {
     border-color: rgba(122, 235, 165, 0.53);
 }
 
-#delete-counter {
+.delete-counter {
     background-color: yellow;
     margin-left: 5vh;
     padding-left: 1vh;
     padding-right: 1vh;
+}
+
+.critical {
+    background-color: red;
 }
 
 .card {

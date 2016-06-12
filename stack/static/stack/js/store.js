@@ -3,14 +3,24 @@
  */
 import { createStore, combineReducers } from 'redux'
 
-function counter(state = {'counter': 0}, action) {
+function counter(state = 0, action) {
     switch (action.type) {
         case 'INCREMENT':
             return state + 1;
-        case 'DECREMENT':
+        case 'DELETE_CARD':
             return state - 1;
         default:
             return state;
+    }
+}
+
+function hoverLocation(state = false, action) {
+    switch(action.type) {
+        case 'CARD_ENTER':
+            return action.location;
+
+        default:
+            return state
     }
 }
 
@@ -19,20 +29,16 @@ function counter(state = {'counter': 0}, action) {
  * name, second  is the index which corresponds to position in that drop area), and the card object itself.
  */
 function board(state = {'bank': [], 'stack': []}, action) {
-    let newData;
+
+    // copy initial state
+    let newData = Object.assign({}, state);
     switch (action.type) {
         case 'ADD_CARD':
 
-            // copy initial state
-            newData = Object.assign({}, state);
             newData[action.location[0]][action.location[1]].push(action.card);
-            console.log('adding card');
             return Object.assign({}, state, newData);
 
-        case 'REMOVE_CARD':
-
-            // copy initial state
-            newData = Object.assign({}, state);
+        case 'DELETE_CARD':
 
             // look for the card in the array already
             let indexOf = newData[action.location[0]][action.location[1]].indexOf(action.card);
@@ -49,7 +55,6 @@ function board(state = {'bank': [], 'stack': []}, action) {
             return Object.assign({}, state, newData);
 
         default:
-            console.log('default');
             return state;
     }
 }
@@ -63,7 +68,8 @@ let state = {
         'bank': bank,
         'stack': stack
     },
-    'counter': counter
+    'counter': 10,
+    'hoverLocation': false
 };
 
 
@@ -76,6 +82,6 @@ for (let i = 0; i < stack_size; i++) {
     stack.push([])
 }
 
-let combinedReducer = combineReducers({ board: board, counter: counter });
+let combinedReducer = combineReducers({ board, counter, hoverLocation });
 let store = createStore(combinedReducer, state);
 export default store;

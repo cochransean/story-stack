@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Headers from './headers.jsx';
 import DropArea from './dropArea.jsx';
-import {addCard} from '../actions/index'
+import {deleteCardClick} from '../actions/index';
 
 export default class Stack extends Component {
 
@@ -13,8 +13,7 @@ export default class Stack extends Component {
         this.ajaxRequest = $.get(plotPointRequestUrl + numberOfCards, function(cards) {
 
             cards.forEach(function(card, index) {
-
-                component.props.dispatch(addCard(card, ['bank', index]));
+                component.props.addCard(card, ['bank', index]);
             });
         });
     }
@@ -24,12 +23,17 @@ export default class Stack extends Component {
     }
 
     render() {
+
         return (
             <div>
-                <Headers />
+                <Headers counter={this.props.counter}  />
                 <div id="body" className="row">
-                    <DropArea columns={3} cardsPerColumn={3} state={this.props.board.bank} location='bank'/>
-                    <DropArea columns={1} cardsPerColumn={5} state={this.props.board.stack} location='stack'/>
+                    <DropArea columns={3} deleteCardClick={this.props.deleteCardClick} cardsPerColumn={3}
+                              cards={this.props.board.bank} cardEnter={this.props.cardEnter} location='bank' 
+                              hoverLocation={this.props.hoverLocation}/>
+                    <DropArea columns={1} deleteCardClick={this.props.deleteCardClick} cardsPerColumn={5}
+                              cards={this.props.board.stack} cardEnter={this.props.cardEnter} location='stack' 
+                              hoverLocation={this.props.hoverLocation}/>
                 </div>
             </div>
         )
