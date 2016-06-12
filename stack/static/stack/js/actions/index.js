@@ -26,3 +26,9 @@ export const cardEnter = (location) => {
         location: location
     }
 };
+
+export const cardLeave = (location) => {
+    return {
+        type: 'CARD_LEAVE',
+    }
+};

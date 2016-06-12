@@ -14,10 +14,16 @@ function counter(state = 0, action) {
     }
 }
 
-function hoverLocation(state = false, action) {
+function globalGameInfo(state = { 'hoverLocation': false }, action) {
+    let newData = Object.assign({}, state);
     switch(action.type) {
         case 'CARD_ENTER':
-            return action.location;
+            newData.hoverLocation = action.location;
+            return Object.assign({}, state, newData);
+
+        case 'CARD_LEAVE':
+            newData.hoverLocation = false;
+            return Object.assign({}, state, newData);
 
         default:
             return state
@@ -69,7 +75,9 @@ let state = {
         'stack': stack
     },
     'counter': 10,
-    'hoverLocation': false
+    'globalGameInfo': {
+        hoverLocation: false
+    }
 };
 
 
@@ -82,6 +90,6 @@ for (let i = 0; i < stack_size; i++) {
     stack.push([])
 }
 
-let combinedReducer = combineReducers({ board, counter, hoverLocation });
+let combinedReducer = combineReducers({ board, counter, globalGameInfo });
 let store = createStore(combinedReducer, state);
 export default store;

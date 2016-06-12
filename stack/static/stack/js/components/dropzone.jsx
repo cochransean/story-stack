@@ -4,6 +4,7 @@
 import React, {Component} from 'react';
 let classNames = require('classnames');
 import { ItemTypes } from '../constants';
+import Card from './card'
 let DropTarget = require('react-dnd').DropTarget;
 
 let cardTarget = {
@@ -39,6 +40,7 @@ class DropZone extends Component {
 
             // TODO update hover location to be false in case the user drags out of any drop targets
             console.log('Drag leave');
+            this.props.cardLeave(this.props.location);
         }
     }
 
@@ -54,15 +56,23 @@ class DropZone extends Component {
             
             // check if card is being dragged immediately below, in which case border is already taken care of
             // and will otherwise double up and look wrong
-            'bottom-bordered': this.props.location[0] === 'stack' && !this.props.bottom && this.props.hoverLocation[1]
-                !== dropBelow[1],
+            'bottom-bordered': this.props.location[0] === 'stack' && !this.props.bottom &&
+                this.props.globalGameInfo.hoverLocation[1] !== dropBelow[1],
             'drop-target': isOver
         });
 
+        // build out cards as required
+        let rows = [];
+        for (let i = 0; i < this.props.dropContents.length; i++) {
+            rows.push(<Card key={this.props.dropContents[i].id} deleteCardClick={this.props.deleteCardClick}
+                          card={this.props.dropContents[i]} location={this.props.location} />)
+        }
+
         return (
             connectDropTarget(
+                // TODO update properties and do occupied logic here since now should have entire state
                 <div className={dropClass}>
-                    {this.props.children}
+                    {rows}
                 </div>
             )
         );

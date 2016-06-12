@@ -1,10 +1,13 @@
 import {connect} from 'react-redux'
-import Stack from '../components/stack.jsx';
+import DropZone from '../components/dropzone.jsx';
 import * as actions from '../actions/index';
 
 
-const mapStateToProps = (state) => {
-    return state
+const mapStateToProps = (state, ownProps) => {
+    return {
+        dropContents: state.board[ownProps.location[0]][ownProps.location[1]],
+        globalGameInfo: state.globalGameInfo
+    }
 };
 
 // put callbacks that need to be injected into components here
@@ -18,13 +21,16 @@ const mapDispatchToProps = (dispatch) => {
         },
         cardEnter: (location) => {
             dispatch(actions.cardEnter(location))
+        },
+        cardLeave: (location) => {
+            dispatch(actions.cardLeave(location))
         }
     }
 };
 
-const StackContainer = connect(
+const DropContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Stack);
+)(DropZone);
 
-export default StackContainer
+export default DropContainer
