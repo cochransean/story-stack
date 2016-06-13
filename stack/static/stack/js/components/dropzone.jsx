@@ -8,6 +8,8 @@ import Card from './card'
 let DropTarget = require('react-dnd').DropTarget;
 
 let cardTarget = {
+
+    // actions to take upon drop
     drop(dropProps, monitor) {
         console.log("Drop happened.");
 
@@ -20,7 +22,13 @@ let cardTarget = {
 
         // remove card from old spot in state, add to the new spot
         dropProps.moveCard(cardProps.card, oldLocation, newLocation);
+    },
 
+    // specify when drop is allowed
+    canDrop(props) {
+
+        // only allow drops on empty dropzones
+        return props.dropContents.length < 1
     }
 };
 
