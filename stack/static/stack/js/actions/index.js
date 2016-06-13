@@ -29,6 +29,15 @@ export const cardEnter = (location) => {
 
 export const cardLeave = (location) => {
     return {
-        type: 'CARD_LEAVE',
+        type: 'CARD_LEAVE'
     }
 };
+
+export const moveCard = (card, oldLocation, newLocation) => {
+    return {
+        type: 'MOVE_CARD',
+        card: card,
+        oldLocation: oldLocation,
+        newLocation: newLocation
+    }
+}

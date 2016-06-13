@@ -8,8 +8,19 @@ import Card from './card'
 let DropTarget = require('react-dnd').DropTarget;
 
 let cardTarget = {
-    drop(props) {
+    drop(dropProps, monitor) {
         console.log("Drop happened.");
+
+        // get the card that has just been dropped
+        let cardProps = monitor.getItem().cardProps;
+
+        // get locations for update
+        let oldLocation = cardProps.location;
+        let newLocation = dropProps.location;
+
+        // remove card from old spot in state, add to the new spot
+        dropProps.moveCard(cardProps.card, oldLocation, newLocation);
+
     }
 };
 
@@ -70,7 +81,6 @@ class DropZone extends Component {
 
         return (
             connectDropTarget(
-                // TODO update properties and do occupied logic here since now should have entire state
                 <div className={dropClass}>
                     {rows}
                 </div>

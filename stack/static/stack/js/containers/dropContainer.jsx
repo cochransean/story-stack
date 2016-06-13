@@ -24,6 +24,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         cardLeave: (location) => {
             dispatch(actions.cardLeave(location))
+        },
+        moveCard: (card, oldLocation, newLocation) => {
+            dispatch(actions.moveCard(card, oldLocation, newLocation))
         }
     }
 };

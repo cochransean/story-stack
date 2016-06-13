@@ -20,11 +20,9 @@ function globalGameInfo(state = { 'hoverLocation': false }, action) {
         case 'CARD_ENTER':
             newData.hoverLocation = action.location;
             return Object.assign({}, state, newData);
-
         case 'CARD_LEAVE':
             newData.hoverLocation = false;
             return Object.assign({}, state, newData);
-
         default:
             return state
     }
@@ -40,7 +38,6 @@ function board(state = {'bank': [], 'stack': []}, action) {
     let newData = Object.assign({}, state);
     switch (action.type) {
         case 'ADD_CARD':
-
             newData[action.location[0]][action.location[1]].push(action.card);
             return Object.assign({}, state, newData);
 
@@ -57,6 +54,30 @@ function board(state = {'bank': [], 'stack': []}, action) {
 
             // remove the item from the array
             newData[action.location[0]][action.location[1]].splice(indexOf, 1);
+
+            return Object.assign({}, state, newData);
+        
+        case 'MOVE_CARD':
+
+            // For now, I'm doing this all here rather than adding and deleting each card using pre-existing functions
+            // because I don't want the state to chance twice which might cause flickering or inconsistent renders.
+            // Also, I might later add state changes for "card moving", etc. so that different animations can be
+            // played for each.  So, that's why this code is repetitive with what is listed above.
+            
+            // remove the old card
+            let oldLocationIndex = newData[action.oldLocation[0]][action.oldLocation[1]].indexOf(action.card);
+
+            // if not found, do nothing
+            if (oldLocationIndex < 0) {
+                console.log("Card not found in store.");
+                return state
+            }
+
+            // remove the item from the array
+            newData[action.oldLocation[0]][action.oldLocation[1]].splice(oldLocationIndex, 1);
+
+            // add to the new array
+            newData[action.newLocation[0]][action.newLocation[1]].push(action.card);
 
             return Object.assign({}, state, newData);
 
