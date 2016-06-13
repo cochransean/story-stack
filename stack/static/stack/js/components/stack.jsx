@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Headers from './headers.jsx';
 import DropArea from './dropArea.jsx';
-import {deleteCardClick} from '../actions/index';
+import { deleteCardClick } from '../actions/index';
 
 export default class Stack extends Component {
 
@@ -28,11 +28,11 @@ export default class Stack extends Component {
             <div>
                 <Headers counter={this.props.counter}  />
                 <div id="body" className="row">
-                    <DropArea columns={3} deleteCardClick={this.props.deleteCardClick} cardsPerColumn={3}
-                              cards={this.props.board.bank} cardEnter={this.props.cardEnter} location='bank' 
+                    <DropArea key='bank' columns={3} deleteCardClick={this.props.deleteCardClick} cardsPerColumn={3}
+                              cards={this.props.board.bank} cardEnter={this.props.cardEnter} location='bank'
                               hoverLocation={this.props.hoverLocation}/>
-                    <DropArea columns={1} deleteCardClick={this.props.deleteCardClick} cardsPerColumn={5}
-                              cards={this.props.board.stack} cardEnter={this.props.cardEnter} location='stack' 
+                    <DropArea key='stack' columns={1} deleteCardClick={this.props.deleteCardClick} cardsPerColumn={5}
+                              cards={this.props.board.stack} cardEnter={this.props.cardEnter} location='stack'
                               hoverLocation={this.props.hoverLocation}/>
                 </div>
             </div>

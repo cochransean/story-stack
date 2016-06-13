@@ -2,6 +2,10 @@ body {
     background-color: #5BC0DE;
 }
 
+.drop-zone span {
+    width: 100%;
+}
+
 #page-heading {
     height: 10vh;
     font-size: 8vh;
@@ -44,7 +48,7 @@ body {
 }
 
 .card {
-    display: flex;
+    display: flex !important;
     width: 100%;
     align-items: center;
     justify-content: space-between;
@@ -52,8 +56,6 @@ body {
     height: 15vh;
     font-size: 2vh;
     margin-bottom: 0;
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
 }
 
 .btn-centered {

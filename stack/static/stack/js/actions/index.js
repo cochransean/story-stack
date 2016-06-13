@@ -20,6 +20,15 @@ export const incrementCounter = () => {
     }
 };
 
+export const moveCard = (card, oldLocation, newLocation) => {
+    return {
+        type: 'MOVE_CARD',
+        card: card,
+        oldLocation: oldLocation,
+        newLocation: newLocation
+    }
+};
+
 export const cardEnter = (location) => {
     return {
         type: 'CARD_ENTER',
@@ -29,15 +38,7 @@ export const cardEnter = (location) => {
 
 export const cardLeave = (location) => {
     return {
-        type: 'CARD_LEAVE'
+        type: 'CARD_LEAVE',
+        location: location
     }
 };
-
-export const moveCard = (card, oldLocation, newLocation) => {
-    return {
-        type: 'MOVE_CARD',
-        card: card,
-        oldLocation: oldLocation,
-        newLocation: newLocation
-    }
-}

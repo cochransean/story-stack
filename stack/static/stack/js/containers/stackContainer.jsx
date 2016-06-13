@@ -12,12 +12,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addCard: (card, location) => {
             dispatch(actions.addCard(card, location))
-        },
-        deleteCardClick: (card, location) => {
-            dispatch(actions.deleteCard(card, location))
-        },
-        cardEnter: (location) => {
-            dispatch(actions.cardEnter(location))
         }
     }
 };

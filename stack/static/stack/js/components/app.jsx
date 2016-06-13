@@ -2,8 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import StackContainer from '../containers/stackContainer.jsx';
-import { Provider } from 'react-redux'
-import store from '../store.js'
+import { Provider } from 'react-redux';
+import store from '../store.js';
 
 class App extends Component {
 
@@ -11,7 +11,7 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <div className="container-fluid">
-                    <StackContainer />
+                    <StackContainer key="stackContainer"/>
                 </div>
             </Provider>
         )

@@ -8,7 +8,7 @@ function counter(state = 0, action) {
         case 'INCREMENT':
             return state + 1;
         case 'DELETE_CARD':
-            return state - 1;
+            return state > 0 ? state - 1: 0; // if already at 0 or below, return 0
         default:
             return state;
     }

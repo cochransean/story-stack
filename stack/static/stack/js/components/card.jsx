@@ -35,7 +35,8 @@ class Card extends Component {
                     <p className="card-text">{this.props.card.point_text}</p>
                 </div>
                 <div>
-                    <button onClick={() => this.props.deleteCardClick(this.props.card, this.props.location)} className="delete-card-btn btn btn-centered btn-primary">
+                    <button onClick={() => this.props.deleteCard(this.props.card, this.props.location, this.props.counter)}
+                            className="delete-card-btn btn btn-centered btn-primary">
                         <i className="fa fa-bomb" aria-hidden="true"></i>
                     </button>
                 </div>

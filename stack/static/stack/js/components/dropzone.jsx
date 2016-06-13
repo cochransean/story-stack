@@ -6,6 +6,8 @@ let classNames = require('classnames');
 import { ItemTypes } from '../constants';
 import Card from './card'
 let DropTarget = require('react-dnd').DropTarget;
+import { VelocityTransitionGroup } from 'velocity-react';
+
 
 let cardTarget = {
 
@@ -65,6 +67,7 @@ class DropZone extends Component {
 
     render() {
 
+        let component = this;
         let connectDropTarget = this.props.connectDropTarget;
         let isOver = this.props.isOver;
         let dropBelow = [this.props.location[0], this.props.location[1] + 1];
@@ -76,21 +79,38 @@ class DropZone extends Component {
             // check if card is being dragged immediately below, in which case border is already taken care of
             // and will otherwise double up and look wrong
             'bottom-bordered': this.props.location[0] === 'stack' && !this.props.bottom &&
-                this.props.globalGameInfo.hoverLocation[1] !== dropBelow[1],
+            (this.props.globalGameInfo.hoverLocation[0] !== 'stack' ||
+            this.props.globalGameInfo.hoverLocation[1] !== dropBelow[1]),
             'drop-target': isOver
         });
 
         // build out cards as required
         let rows = [];
         for (let i = 0; i < this.props.dropContents.length; i++) {
-            rows.push(<Card key={this.props.dropContents[i].id} deleteCardClick={this.props.deleteCardClick}
+            rows.push(<Card key={this.props.dropContents[i].id} counter={this.props.counter} deleteCard={this.props.deleteCard}
                           card={this.props.dropContents[i]} location={this.props.location} />)
         }
 
         return (
             connectDropTarget(
                 <div className={dropClass}>
-                    {rows}
+                    <VelocityTransitionGroup enter={{animation: "transition.expandIn"}}
+                        leave={{
+                            animation: "transition.expandOut",
+                            begin: () => {
+
+                                // AJAX request for new card text; numeral at end of URL is number you want
+                                $.get(plotPointRequestUrl + 1, function(cards) {
+
+                                    cards.forEach(function (newCard) {
+                                        component.newCard = newCard;
+                                    });
+                                });
+                            },
+                            complete: () => component.props.addCard(component.newCard, component.props.location)
+                        }}>
+                        {rows}
+                    </VelocityTransitionGroup>
                 </div>
             )
         );

@@ -6,7 +6,8 @@ import * as actions from '../actions/index';
 const mapStateToProps = (state, ownProps) => {
     return {
         dropContents: state.board[ownProps.location[0]][ownProps.location[1]],
-        globalGameInfo: state.globalGameInfo
+        globalGameInfo: state.globalGameInfo,
+        counter: state.counter
     }
 };
 
@@ -16,17 +17,22 @@ const mapDispatchToProps = (dispatch) => {
         addCard: (card, location) => {
             dispatch(actions.addCard(card, location))
         },
-        deleteCardClick: (card, location) => {
-            dispatch(actions.deleteCard(card, location))
+        deleteCard: (card, location, counter) => {
+
+            // stop here since there are no more deletes left
+            if (counter <= 0) {
+                return
+            }
+            dispatch(actions.deleteCard(card, location));
+        },
+        moveCard: (card, oldLocation, newLocation) => {
+            dispatch(actions.moveCard(card, oldLocation, newLocation))
         },
         cardEnter: (location) => {
             dispatch(actions.cardEnter(location))
         },
         cardLeave: (location) => {
             dispatch(actions.cardLeave(location))
-        },
-        moveCard: (card, oldLocation, newLocation) => {
-            dispatch(actions.moveCard(card, oldLocation, newLocation))
         }
     }
 };
