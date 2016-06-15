@@ -3,18 +3,36 @@
  */
 import { createStore, combineReducers } from 'redux'
 
+// Defaults
+const STARTING_DELETES = 10;
+let blankBank = [];
+let blankStack = [];
+const bank_size = 9;
+const stack_size = 5;
+for (let i = 0; i < bank_size; i++) {
+
+    // default to animating true since components will initially animate and then be switched to false upon
+    // completion (to prevent brief delay in start from messing up state checks)
+    blankBank.push({'contents': [], 'animating': true})
+}
+for (let i = 0; i < stack_size; i++) {
+    blankStack.push({'contents': [], 'animating': false})
+}
+
 function counter(state = 0, action) {
     switch (action.type) {
         case 'INCREMENT':
             return state + 1;
         case 'DELETE_CARD':
             return state > 0 ? state - 1: 0; // if already at 0 or below, return 0
+        case 'WIPE_BOARD':
+            return 10;
         default:
             return state;
     }
 }
 
-function globalGameInfo(state = { 'deleteCardAnimation': false }, action) {
+function globalGameInfo(state = { 'deleteCardAnimation': false, 'drawingCards': true }, action) {
     let newData = Object.assign({}, state);
     switch(action.type) {
         case 'DELETE_CARD':
@@ -25,6 +43,12 @@ function globalGameInfo(state = { 'deleteCardAnimation': false }, action) {
             return Object.assign({}, state, newData);
         case 'MOVE_CARD':
             newData.hoverLocation = false;
+            return Object.assign({}, state, newData);
+        case 'WIPE_BOARD':
+            newData.wipingBoard = true;
+            return Object.assign({}, state, newData);
+        case 'WIPE_COMPLETE':
+            newData.wipingBoard = false;
             return Object.assign({}, state, newData);
         default:
             return state
@@ -41,13 +65,15 @@ function board(state = {'bank': [], 'stack': []}, action) {
     let newData = Object.assign({}, state);
     switch (action.type) {
         case 'ADD_CARD':
-            newData[action.location[0]][action.location[1]].push(action.card);
+            newData[action.location[0]][action.location[1]].contents.push(action.card);
             return Object.assign({}, state, newData);
 
         case 'DELETE_CARD':
 
+            let contents = newData[action.location[0]][action.location[1]].contents;
+
             // look for the card in the array already
-            let indexOf = newData[action.location[0]][action.location[1]].indexOf(action.card);
+            let indexOf = contents.indexOf(action.card);
 
             // if not found, do nothing
             if (indexOf < 0) {
@@ -56,7 +82,7 @@ function board(state = {'bank': [], 'stack': []}, action) {
             }
 
             // remove the item from the array
-            newData[action.location[0]][action.location[1]].splice(indexOf, 1);
+            contents.splice(indexOf, 1);
 
             return Object.assign({}, state, newData);
         
@@ -68,7 +94,7 @@ function board(state = {'bank': [], 'stack': []}, action) {
             // played for each.  So, that's why this code is repetitive with what is listed above.
             
             // remove the old card
-            let oldLocationIndex = newData[action.oldLocation[0]][action.oldLocation[1]].indexOf(action.card);
+            let oldLocationIndex = newData[action.oldLocation[0]][action.oldLocation[1]].contents.indexOf(action.card);
 
             // if not found, do nothing
             if (oldLocationIndex < 0) {
@@ -77,11 +103,24 @@ function board(state = {'bank': [], 'stack': []}, action) {
             }
 
             // remove the item from the array
-            newData[action.oldLocation[0]][action.oldLocation[1]].splice(oldLocationIndex, 1);
+            newData[action.oldLocation[0]][action.oldLocation[1]].contents.splice(oldLocationIndex, 1);
 
             // add to the new array
-            newData[action.newLocation[0]][action.newLocation[1]].push(action.card);
+            newData[action.newLocation[0]][action.newLocation[1]].contents.push(action.card);
 
+            return Object.assign({}, state, newData);
+
+        case 'WIPE_BOARD':
+            newData['bank'] = JSON.parse(JSON.stringify(blankBank));
+            newData['stack'] = JSON.parse(JSON.stringify(blankStack));
+            return Object.assign({}, state, newData);
+
+        case 'START_ANIMATION':
+            newData[action.location[0]][action.location[1]].animating = true;
+            return Object.assign({}, state, newData);
+
+        case 'FINISH_ANIMATION':
+            newData[action.location[0]][action.location[1]].animating = false;
             return Object.assign({}, state, newData);
 
         default:
@@ -89,30 +128,22 @@ function board(state = {'bank': [], 'stack': []}, action) {
     }
 }
 
-let bank = [];
-let stack = [];
-const bank_size = 9;
-const stack_size = 5;
 let state = {
     'board': {
-        'bank': bank,
-        'stack': stack
+
+        // Make deep copy since array contains arrays that will otherwise pass by reference
+        'bank': JSON.parse(JSON.stringify(blankBank)),
+        'stack': JSON.parse(JSON.stringify(blankStack))
     },
-    'counter': 10,
+    'counter': STARTING_DELETES,
     'globalGameInfo': {
-        deleteCardAnimation: false
+        deleteCardAnimation: false,
+        wipingBoard: false
     }
 };
 
 
-// TODO update this to calculate dynamically based on a variable shared with app.js so we aren't hard coding all over
-// and having to change in multiple places if we want to change card number
-for (let i = 0; i < bank_size; i++) {
-    bank.push([])
-}
-for (let i = 0; i < stack_size; i++) {
-    stack.push([])
-}
+
 
 let combinedReducer = combineReducers({ board, counter, globalGameInfo });
 let store = createStore(combinedReducer, state);

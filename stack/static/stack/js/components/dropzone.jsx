@@ -95,6 +95,7 @@ class DropZone extends Component {
                         leave={{
                             animation: "transition.expandOut",
                             begin: () => {
+                                this.props.startAnimation(this.props.location);
 
                                 // if a card has just been deleted, get a new one
                                 if (this.props.globalGameInfo.deleteCardAnimation === true) {
@@ -108,6 +109,8 @@ class DropZone extends Component {
                                 }
                             },
                             complete: () =>  {
+
+                                this.props.finishAnimation(this.props.location);
 
                                 if (component.newCard) {
 

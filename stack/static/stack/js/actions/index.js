@@ -35,16 +35,28 @@ export const moveCard = (card, oldLocation, newLocation) => {
     }
 };
 
-export const cardEnter = (location) => {
+export const wipeBoard = () => {
     return {
-        type: 'CARD_ENTER',
+        type: 'WIPE_BOARD'
+    }
+};
+
+export const wipeComplete = () => {
+    return {
+        type: 'WIPE_COMPLETE'
+    }
+};
+
+export const startAnimation = (location) => {
+    return {
+        type: 'START_ANIMATION',
         location: location
     }
 };
 
-export const cardLeave = (location) => {
+export const finishAnimation = (location) => {
     return {
-        type: 'CARD_LEAVE',
+        type: 'FINISH_ANIMATION',
         location: location
     }
 };

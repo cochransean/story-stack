@@ -5,7 +5,7 @@ import * as actions from '../actions/index';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        dropContents: state.board[ownProps.location[0]][ownProps.location[1]],
+        dropContents: state.board[ownProps.location[0]][ownProps.location[1]].contents,
         globalGameInfo: state.globalGameInfo,
         counter: state.counter
     }
@@ -30,6 +30,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         moveCard: (card, oldLocation, newLocation) => {
             dispatch(actions.moveCard(card, oldLocation, newLocation))
+        },
+        startAnimation: (location) => {
+            dispatch(actions.startAnimation(location));
+        },
+        finishAnimation: (location) => {
+            dispatch(actions.finishAnimation(location));
         }
     }
 };

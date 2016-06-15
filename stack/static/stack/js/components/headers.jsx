@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Counter from './counter';
+import StackControls from './stackControls';
 
 export default class Headers extends Component {
 
@@ -15,11 +16,7 @@ export default class Headers extends Component {
                     </div>
                     <div className="flex-separate-horizontal col-xs-3">
                         <p>The Stack</p>
-                        <div id="stack-controls" className="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" className="btn btn-secondary btn-centered"><i className="fa fa-floppy-o" aria-hidden="true"></i></button>
-                            <button type="button" className="btn btn-secondary btn-centered"><i className="fa fa-chevron-left" aria-hidden="true"></i></button>
-                            <button type="button" className="btn btn-secondary btn-centered"><i className="fa fa-share-alt" aria-hidden="true"></i></button>
-                        </div>
+                        <StackControls wipeBoard={this.props.wipeBoard} />
                     </div>
                 </div>
             </div>

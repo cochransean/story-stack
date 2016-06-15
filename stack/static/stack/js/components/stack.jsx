@@ -5,7 +5,7 @@ import { deleteCardClick } from '../actions/index';
 
 export default class Stack extends Component {
 
-    componentDidMount() {
+    getNewCards() {
         let component = this;
         const numberOfCards = 9;
 
@@ -18,6 +18,33 @@ export default class Stack extends Component {
         });
     }
 
+    componentDidMount() {
+        this.getNewCards();
+    }
+
+    componentWillUpdate(nextProps) {
+
+        // check to make sure board is being wiped
+        // I am checking this here because the board is not being wiped most of the time this component updates,
+        // so it's more efficient to check early and not loop so much.
+        if (!nextProps.globalGameInfo.wipingBoard) {
+            return;
+        }
+
+        // make sure all animations are complete on bank
+        let bank = nextProps.board.bank;
+        for (let dropzone of bank) {
+            if (dropzone.animating) {
+                return
+            }
+        }
+
+        // If we get to here, must not be wiping the board and animations must be complete
+        console.log("board wipe complete");
+        this.props.wipeComplete();
+        this.getNewCards();
+    }
+
     componentWillUnmount() {
         this.ajaxRequest.abort();
     }
@@ -26,14 +53,10 @@ export default class Stack extends Component {
 
         return (
             <div>
-                <Headers counter={this.props.counter}  />
+                <Headers counter={this.props.counter} wipeBoard={this.props.wipeBoard}  />
                 <div id="body" className="row">
-                    <DropArea key='bank' columns={3} deleteCardClick={this.props.deleteCardClick} cardsPerColumn={3}
-                              cards={this.props.board.bank} cardEnter={this.props.cardEnter} location='bank'
-                              hoverLocation={this.props.hoverLocation}/>
-                    <DropArea key='stack' columns={1} deleteCardClick={this.props.deleteCardClick} cardsPerColumn={5}
-                              cards={this.props.board.stack} cardEnter={this.props.cardEnter} location='stack'
-                              hoverLocation={this.props.hoverLocation}/>
+                    <DropArea key='bank' columns={3} cardsPerColumn={3} location='bank'/>
+                    <DropArea key='stack' columns={1} cardsPerColumn={5} location='stack'/>
                 </div>
             </div>
         )

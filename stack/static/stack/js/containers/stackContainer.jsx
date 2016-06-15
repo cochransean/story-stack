@@ -11,7 +11,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addCard: (card, location) => {
-            dispatch(actions.addCard(card, location))
+            dispatch(actions.addCard(card, location));
+        },
+        wipeBoard: () => {
+            dispatch(actions.wipeBoard());
+        },
+        wipeComplete: ()=> {
+            dispatch(actions.wipeComplete());
         }
     }
 };
