@@ -85,15 +85,19 @@ class DropZone extends Component {
                           card={this.props.dropContents[i]} location={this.props.location} />)
         }
 
-        return (
+        // determine animation
+        let exitAnimation = this.props.globalGameInfo.wipingBoard ?
+            "transition.perspectiveLeftOut" : "transition.expandOut";
 
+        return (
+            
             // pass display "flex" here because velocity starts with display: none and transitions to block normally
             // while our formatting is contingent upon flex display
             connectDropTarget(
                 <div className={dropClass}>
                     <VelocityTransitionGroup enter={{animation: "transition.expandIn", display: "flex"}}
                         leave={{
-                            animation: "transition.expandOut",
+                            animation: exitAnimation,
                             begin: () => {
                                 this.props.startAnimation(this.props.location);
 

@@ -40,7 +40,7 @@ export default class Stack extends Component {
         }
 
         // If we get to here, must not be wiping the board and animations must be complete
-        console.log("board wipe complete");
+        console.log("Board wipe complete");
         this.props.wipeComplete();
         this.getNewCards();
     }
