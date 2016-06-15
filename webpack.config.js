@@ -30,7 +30,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015']
+                    presets: ['es2015', 'react']
                 }
             }, // to transform JSX into JS and use ES2015
             {

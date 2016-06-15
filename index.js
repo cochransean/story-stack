@@ -1,6 +1,4 @@
-// Require all app-level dependencies here (make sure the app static directory is included in resolve:root of
-// the webpack config
-require("js/cardDrop.js");
-require("js/draggable.js");
-require("js/cardArea.js");
+// Webpack traces from here, following import / require statements to include necessary files
 require("js/main.js");
+require('velocity-animate');
+require('velocity-animate/velocity.ui');

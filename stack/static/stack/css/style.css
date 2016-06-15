@@ -2,6 +2,11 @@ body {
     background-color: #5BC0DE;
 }
 
+/* This is here to ensure cards take up entire width of their drop zone even with the wrapper span */
+.drop-zone span {
+    width: 100%;
+}
+
 #page-heading {
     height: 10vh;
     font-size: 8vh;
@@ -32,15 +37,18 @@ body {
     border-color: rgba(122, 235, 165, 0.53);
 }
 
-#delete-counter {
+.delete-counter {
     background-color: yellow;
     margin-left: 5vh;
     padding-left: 1vh;
     padding-right: 1vh;
 }
 
+.critical {
+    background-color: red;
+}
+
 .card {
-    display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
@@ -48,8 +56,6 @@ body {
     height: 15vh;
     font-size: 2vh;
     margin-bottom: 0;
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
 }
 
 .btn-centered {
@@ -83,13 +89,17 @@ body {
     height: 84vh;
 }
 
-.heap {
+.bank {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     /* adding height here redundantly because bootstrap columns don't work properly on heroku otherwise */
     margin-top: 1vh;
     height: 83vh;
+}
+
+.bank .drop-target {
+    border: dashed black;
 }
 
 .drop-zone {
@@ -103,10 +113,9 @@ body {
 
 .drop-target {
     background-color: #29e;
-    border: dashed black;
 }
 
-#stack {
+.stack {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
