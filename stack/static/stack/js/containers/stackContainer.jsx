@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         wipeComplete: ()=> {
             dispatch(actions.wipeComplete());
+        },
+        startAnimation: (location)=> {
+            dispatch(actions.startAnimation(location));
         }
     }
 };

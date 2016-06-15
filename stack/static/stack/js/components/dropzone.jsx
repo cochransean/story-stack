@@ -45,6 +45,7 @@ function collect(connect, monitor) {
 class DropZone extends Component {
 
     componentWillReceiveProps(nextProps) {
+
         let wasOver = this.props.isOver;
         let isOver = nextProps.isOver;
 
@@ -99,13 +100,15 @@ class DropZone extends Component {
                         leave={{
                             animation: exitAnimation,
                             begin: () => {
+
+                                // update in store
                                 this.props.startAnimation(this.props.location);
 
                                 // if a card has just been deleted, get a new one
                                 if (this.props.globalGameInfo.deleteCardAnimation === true) {
 
                                     // AJAX request for new card text; numeral at end of URL is number you want
-                                    $.get(plotPointRequestUrl + 1, function(cards) {
+                                    this.ajaxRequest = $.get(plotPointRequestUrl + 1, function(cards) {
                                         cards.forEach(function (newCard) {
                                             component.newCard = newCard;
                                         });
@@ -113,19 +116,24 @@ class DropZone extends Component {
                                 }
                             },
                             complete: () =>  {
-
                                 this.props.finishAnimation(this.props.location);
 
-                                if (component.newCard) {
+                                if (this.props.globalGameInfo.deleteCardAnimation === true) {
 
-                                    // add the card
-                                    component.props.addCard(component.newCard, component.props.location);
+                                   // once the AJAX request is complete
+                                   this.ajaxRequest.then(() => {
 
-                                    // update the new card property
-                                    component.newCard = false;
+                                        // add the card
+                                        component.props.addCard(component.newCard, component.props.location);
 
-                                    // update state to reflect completed animation
-                                    component.props.deleteCardComplete();
+                                        // update the new card property
+                                        component.newCard = false;
+
+                                        // update state to reflect completed animation
+                                        component.props.deleteCardComplete();
+                                    }, () => {
+                                        console.log("AJAX request for new card failed.")
+                                    });
                                 }
                             }
                         }}>

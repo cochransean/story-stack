@@ -13,6 +13,10 @@ export default class Stack extends Component {
         this.ajaxRequest = $.get(plotPointRequestUrl + numberOfCards, function(cards) {
 
             cards.forEach(function(card, index) {
+
+                // update the animation status before adding card to store, otherwise the momentary delay between
+                // the card being added and the animation status updating causes cards to be rendered prematurely
+                component.props.startAnimation(['bank', index]);
                 component.props.addCard(card, ['bank', index]);
             });
         });
