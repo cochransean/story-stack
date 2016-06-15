@@ -10,10 +10,7 @@ let blankStack = [];
 const bank_size = 9;
 const stack_size = 5;
 for (let i = 0; i < bank_size; i++) {
-
-    // default to animating true since components will initially animate and then be switched to false upon
-    // completion (to prevent brief delay in start from messing up state checks)
-    blankBank.push({'contents': [], 'animating': true})
+    blankBank.push({'contents': [], 'animating': false})
 }
 for (let i = 0; i < stack_size; i++) {
     blankStack.push({'contents': [], 'animating': false})
@@ -111,9 +108,20 @@ function board(state = {'bank': [], 'stack': []}, action) {
             return Object.assign({}, state, newData);
 
         case 'WIPE_BOARD':
-            newData['bank'] = JSON.parse(JSON.stringify(blankBank));
-            newData['stack'] = JSON.parse(JSON.stringify(blankStack));
-            return Object.assign({}, state, newData);
+
+            // Unlike the other cases, we want entirely blank data here because we need to zero out the contents of
+            // each array and only preserve the animation status (so we don't use the copy of state ie: newData
+            // that the other cases use.
+            let blankData = {'bank': [], 'stack': []};
+            ['bank', 'stack'].forEach(function(location) {
+                state[location].forEach(function(oldValue) {
+                    blankData[location].push({
+                        contents: [],
+                        animating: oldValue.animating
+                    })
+                });
+            });
+            return Object.assign({}, state, blankData);
 
         case 'START_ANIMATION':
             newData[action.location[0]][action.location[1]].animating = true;

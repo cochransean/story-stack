@@ -35,6 +35,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actions.startAnimation(location));
         },
         finishAnimation: (location) => {
+            
             dispatch(actions.finishAnimation(location));
         }
     }
