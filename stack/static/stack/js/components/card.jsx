@@ -10,6 +10,7 @@ const cardSource = {
     // The item returned here is accessed using monitor.getItem() on the drop zones. So, this must return the card
     // itself that we want to move on the DOM.
     beginDrag(props) {
+        console.log(props);
         return { 'cardProps': props };
     }
 };

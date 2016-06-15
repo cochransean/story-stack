@@ -25,6 +25,9 @@ const mapDispatchToProps = (dispatch) => {
             }
             dispatch(actions.deleteCard(card, location));
         },
+        deleteCardComplete: () => {
+            dispatch(actions.deleteCardComplete());
+        },
         moveCard: (card, oldLocation, newLocation) => {
             dispatch(actions.moveCard(card, oldLocation, newLocation))
         },

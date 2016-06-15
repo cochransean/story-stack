@@ -48,7 +48,6 @@ body {
 }
 
 .card {
-    display: flex !important;
     width: 100%;
     align-items: center;
     justify-content: space-between;

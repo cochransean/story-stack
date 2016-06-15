@@ -14,6 +14,12 @@ export const deleteCard = (card, location) => {
     }
 };
 
+export const deleteCardComplete = () => {
+    return {
+        type: 'DELETE_CARD_COMPLETE'
+    }
+};
+
 export const incrementCounter = () => {
     return {
         type: 'INCREMENT'

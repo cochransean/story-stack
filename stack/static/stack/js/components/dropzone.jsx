@@ -49,19 +49,23 @@ class DropZone extends Component {
 
         // I am using this like a typical "dragenter" method per
         // https://gaearon.github.io/react-dnd/docs-drop-target.html
-        // check hover location to prevent infinite recursion
         if (isOver && !wasOver) {
             console.log('Drag enter.');
             this.props.cardEnter(this.props.location);
         }
-        
+
         // This must mean the dragged item has just left the area
         // Using this like a typical "dragleave" event
         if (wasOver && !isOver) {
 
-            // TODO update hover location to be false in case the user drags out of any drop targets
+            // TODO: I am leaving out a call to "drag leave" for now as this currently is called after the drag enter
+            // call if you are dragging the item up in the stack due to the order react updates components. This
+            // causes the global "hover location" to be overwritten with "false" even though a hover is currently
+            // happening.  In turn, this causes the the bottom border to be doubled up since components think there is
+            // no hover happening.
+            // This makes it possible to drag (carefully) a card from the stack out and around (avoiding other drag
+            // areas, which makes the border not update.
             console.log('Drag leave');
-            this.props.cardLeave(this.props.location);
         }
     }
 
@@ -71,6 +75,11 @@ class DropZone extends Component {
         let connectDropTarget = this.props.connectDropTarget;
         let isOver = this.props.isOver;
         let dropBelow = [this.props.location[0], this.props.location[1] + 1];
+
+        // TODO debug border that shouldn't appear
+        if (this.props.location[0] === 'stack' && this.props.location[1] === 0) {
+            console.log('render: ' + this.props.globalGameInfo.hoverLocation);
+        }
 
         // determine class of drop zone; leave border off last in stack because it is at bottom of screen
         let dropClass = classNames({
@@ -92,22 +101,42 @@ class DropZone extends Component {
         }
 
         return (
+
+            // pass display "flex" here because velocity starts with display: none and transitions to block normally
+            // while our formatting is contingent upon flex display
             connectDropTarget(
                 <div className={dropClass}>
-                    <VelocityTransitionGroup enter={{animation: "transition.expandIn"}}
+                    <VelocityTransitionGroup enter={{animation: "transition.expandIn", display: "flex"}}
                         leave={{
                             animation: "transition.expandOut",
                             begin: () => {
 
-                                // AJAX request for new card text; numeral at end of URL is number you want
-                                $.get(plotPointRequestUrl + 1, function(cards) {
+                                // if a card has just been deleted, get a new one
+                                if (this.props.globalGameInfo.deleteCardAnimation === true) {
 
-                                    cards.forEach(function (newCard) {
-                                        component.newCard = newCard;
+                                    // AJAX request for new card text; numeral at end of URL is number you want
+                                    $.get(plotPointRequestUrl + 1, function(cards) {
+                                        cards.forEach(function (newCard) {
+                                            component.newCard = newCard;
+                                        });
                                     });
-                                });
+                                }
                             },
-                            complete: () => component.props.addCard(component.newCard, component.props.location)
+                            complete: () =>  {
+                                console.log(this);
+
+                                if (component.newCard) {
+
+                                    // add the card
+                                    component.props.addCard(component.newCard, component.props.location);
+
+                                    // update the new card property
+                                    component.newCard = false;
+
+                                    // update state to reflect completed animation
+                                    component.props.deleteCardComplete();
+                                }
+                            }
                         }}>
                         {rows}
                     </VelocityTransitionGroup>

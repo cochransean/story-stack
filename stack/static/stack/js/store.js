@@ -14,13 +14,22 @@ function counter(state = 0, action) {
     }
 }
 
-function globalGameInfo(state = { 'hoverLocation': false }, action) {
+function globalGameInfo(state = { 'hoverLocation': false, 'deleteCardAnimation': false }, action) {
     let newData = Object.assign({}, state);
     switch(action.type) {
         case 'CARD_ENTER':
             newData.hoverLocation = action.location;
             return Object.assign({}, state, newData);
         case 'CARD_LEAVE':
+            newData.hoverLocation = false;
+            return Object.assign({}, state, newData);
+        case 'DELETE_CARD':
+            newData.deleteCardAnimation = true;
+            return Object.assign({}, state, newData);
+        case 'DELETE_CARD_COMPLETE':
+            newData.deleteCardAnimation = false;
+            return Object.assign({}, state, newData);
+        case 'MOVE_CARD':
             newData.hoverLocation = false;
             return Object.assign({}, state, newData);
         default:
@@ -97,7 +106,8 @@ let state = {
     },
     'counter': 10,
     'globalGameInfo': {
-        hoverLocation: false
+        hoverLocation: false,
+        deleteCardAnimation: false
     }
 };
 
