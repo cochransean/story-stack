@@ -106,7 +106,7 @@ class DropZone extends Component {
 
                                 // if a card has just been deleted, get a new one
                                 if (this.props.globalGameInfo.deleteCardAnimation === true) {
-                                
+
                                     // AJAX request for new card text; numeral at end of URL is number you want
                                     this.ajaxRequest = $.get(plotPointRequestUrl + 1, function(cards) {
                                         cards.forEach(function (newCard) {
@@ -121,7 +121,7 @@ class DropZone extends Component {
                                 if (this.props.globalGameInfo.deleteCardAnimation === true) {
 
                                    // once the AJAX request is complete
-                                   this.ajaxRequest.then(function() {
+                                   this.ajaxRequest.then(() => {
 
                                         // add the card
                                         component.props.addCard(component.newCard, component.props.location);
@@ -131,6 +131,8 @@ class DropZone extends Component {
 
                                         // update state to reflect completed animation
                                         component.props.deleteCardComplete();
+                                    }, () => {
+                                        console.log("AJAX request for new card failed.")
                                     });
                                 }
                             }
