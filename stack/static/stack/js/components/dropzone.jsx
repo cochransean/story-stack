@@ -37,7 +37,8 @@ let cardTarget = {
 function collect(connect, monitor) {
     return {
         connectDropTarget: connect.dropTarget(),
-        isOver: monitor.isOver()
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop()
     };
 }
 
@@ -51,21 +52,12 @@ class DropZone extends Component {
         // https://gaearon.github.io/react-dnd/docs-drop-target.html
         if (isOver && !wasOver) {
             console.log('Drag enter.');
-            this.props.cardEnter(this.props.location);
         }
 
         // This must mean the dragged item has just left the area
         // Using this like a typical "dragleave" event
         if (wasOver && !isOver) {
-
-            // TODO: I am leaving out a call to "drag leave" for now as this currently is called after the drag enter
-            // call if you are dragging the item up in the stack due to the order react updates components. This
-            // causes the global "hover location" to be overwritten with "false" even though a hover is currently
-            // happening.  In turn, this causes the the bottom border to be doubled up since components think there is
-            // no hover happening.
-            // This makes it possible to drag (carefully) a card from the stack out and around (avoiding other drag
-            // areas, which makes the border not update.
-            console.log('Drag leave');
+            console.log('Drag leave.');
         }
     }
 
@@ -74,7 +66,7 @@ class DropZone extends Component {
         let component = this;
         let connectDropTarget = this.props.connectDropTarget;
         let isOver = this.props.isOver;
-        let dropBelow = [this.props.location[0], this.props.location[1] + 1];
+        let canDrop = this.props.canDrop;
 
         // determine class of drop zone; leave border off last in stack because it is at bottom of screen
         let dropClass = classNames({
@@ -82,10 +74,8 @@ class DropZone extends Component {
             
             // check if card is being dragged immediately below, in which case border is already taken care of
             // and will otherwise double up and look wrong
-            'bottom-bordered': this.props.location[0] === 'stack' && !this.props.bottom &&
-            (this.props.globalGameInfo.hoverLocation[0] !== 'stack' ||
-            this.props.globalGameInfo.hoverLocation[1] !== dropBelow[1]),
-            'drop-target': isOver
+            'bottom-bordered': this.props.location[0] === 'stack' && !this.props.bottom,
+            'drop-target': isOver && canDrop
         });
 
         // build out cards as required

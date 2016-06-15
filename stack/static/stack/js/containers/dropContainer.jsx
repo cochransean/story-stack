@@ -30,12 +30,6 @@ const mapDispatchToProps = (dispatch) => {
         },
         moveCard: (card, oldLocation, newLocation) => {
             dispatch(actions.moveCard(card, oldLocation, newLocation))
-        },
-        cardEnter: (location) => {
-            dispatch(actions.cardEnter(location))
-        },
-        cardLeave: (location) => {
-            dispatch(actions.cardLeave(location))
         }
     }
 };

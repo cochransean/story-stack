@@ -2,6 +2,7 @@ body {
     background-color: #5BC0DE;
 }
 
+/* This is here to ensure cards take up entire width of their drop zone even with the wrapper span */
 .drop-zone span {
     width: 100%;
 }
@@ -97,6 +98,10 @@ body {
     height: 83vh;
 }
 
+.bank .drop-target {
+    border: dashed black;
+}
+
 .drop-zone {
     display: flex;
     flex-direction: column;
@@ -108,7 +113,6 @@ body {
 
 .drop-target {
     background-color: #29e;
-    border: dashed black;
 }
 
 .stack {
