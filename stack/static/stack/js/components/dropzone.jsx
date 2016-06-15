@@ -76,11 +76,6 @@ class DropZone extends Component {
         let isOver = this.props.isOver;
         let dropBelow = [this.props.location[0], this.props.location[1] + 1];
 
-        // TODO debug border that shouldn't appear
-        if (this.props.location[0] === 'stack' && this.props.location[1] === 0) {
-            console.log('render: ' + this.props.globalGameInfo.hoverLocation);
-        }
-
         // determine class of drop zone; leave border off last in stack because it is at bottom of screen
         let dropClass = classNames({
             'drop-zone': true,
@@ -123,7 +118,6 @@ class DropZone extends Component {
                                 }
                             },
                             complete: () =>  {
-                                console.log(this);
 
                                 if (component.newCard) {
 
