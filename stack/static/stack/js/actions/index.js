@@ -14,9 +14,10 @@ export const deleteCard = (card, location) => {
     }
 };
 
-export const deleteCardComplete = () => {
+export const deleteCardComplete = (location) => {
     return {
-        type: 'DELETE_CARD_COMPLETE'
+        type: 'DELETE_CARD_COMPLETE',
+        location: location
     }
 };
 

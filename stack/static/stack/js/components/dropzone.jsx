@@ -105,7 +105,7 @@ class DropZone extends Component {
                                 this.props.startAnimation(this.props.location);
 
                                 // if a card has just been deleted, get a new one
-                                if (this.props.globalGameInfo.deleteCardAnimation === true) {
+                                if (this.props.deleteCardAnimation === true) {
 
                                     // AJAX request for new card text; numeral at end of URL is number you want
                                     this.ajaxRequest = $.get(plotPointRequestUrl + 1, function(cards) {
@@ -118,19 +118,20 @@ class DropZone extends Component {
                             complete: () =>  {
                                 this.props.finishAnimation(this.props.location);
 
-                                if (this.props.globalGameInfo.deleteCardAnimation === true) {
+                                if (this.props.deleteCardAnimation === true) {
 
                                    // once the AJAX request is complete
                                    this.ajaxRequest.then(() => {
 
                                         // add the card
-                                        component.props.addCard(component.newCard, component.props.location);
+                                        this.props.addCard(component.newCard, component.props.location);
 
                                         // update the new card property
-                                        component.newCard = false;
+                                        this.newCard = false;
 
                                         // update state to reflect completed animation
-                                        component.props.deleteCardComplete();
+                                        this.props.deleteCardComplete(this.props.location);
+                                        this.props.finishAnimation(this.props.location);
                                     }, () => {
                                         console.log("AJAX request for new card failed.")
                                     });

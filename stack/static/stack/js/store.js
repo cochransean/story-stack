@@ -10,10 +10,10 @@ let blankStack = [];
 const bank_size = 9;
 const stack_size = 5;
 for (let i = 0; i < bank_size; i++) {
-    blankBank.push({'contents': [], 'animating': false})
+    blankBank.push({'contents': [], 'animating': false, 'deleteCardAnimation': false})
 }
 for (let i = 0; i < stack_size; i++) {
-    blankStack.push({'contents': [], 'animating': false})
+    blankStack.push({'contents': [], 'animating': false, 'deleteCardAnimation': false})
 }
 
 function counter(state = 0, action) {
@@ -32,15 +32,6 @@ function counter(state = 0, action) {
 function globalGameInfo(state = { 'deleteCardAnimation': false, 'drawingCards': true }, action) {
     let newData = Object.assign({}, state);
     switch(action.type) {
-        case 'DELETE_CARD':
-            newData.deleteCardAnimation = true;
-            return Object.assign({}, state, newData);
-        case 'DELETE_CARD_COMPLETE':
-            newData.deleteCardAnimation = false;
-            return Object.assign({}, state, newData);
-        case 'MOVE_CARD':
-            newData.hoverLocation = false;
-            return Object.assign({}, state, newData);
         case 'WIPE_BOARD':
             newData.wipingBoard = true;
             return Object.assign({}, state, newData);
@@ -67,6 +58,9 @@ function board(state = {'bank': [], 'stack': []}, action) {
 
         case 'DELETE_CARD':
 
+            // track the animation status
+            newData[action.location[0]][action.location[1]].deleteCardAnimation = true;
+
             let contents = newData[action.location[0]][action.location[1]].contents;
 
             // look for the card in the array already
@@ -81,6 +75,10 @@ function board(state = {'bank': [], 'stack': []}, action) {
             // remove the item from the array
             contents.splice(indexOf, 1);
 
+            return Object.assign({}, state, newData);
+
+        case 'DELETE_CARD_COMPLETE':
+            newData[action.location[0]][action.location[1]].deleteCardAnimation = false;
             return Object.assign({}, state, newData);
         
         case 'MOVE_CARD':
@@ -145,7 +143,6 @@ let state = {
     },
     'counter': STARTING_DELETES,
     'globalGameInfo': {
-        deleteCardAnimation: false,
         wipingBoard: false
     }
 };
