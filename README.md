@@ -1,6 +1,8 @@
 # Story Stack
 ### A place for creators to be inspired or get over their writer's block.
-This is Django-based site that currently implements one app, which randomly provides plot-points from a Postgres database and then allows users to arrange them into a story framework.
+This is Django-based site that currently implements an admin page and one app, which randomly provides plot-points from a Postgres database and then allows users to arrange them into a story framework.  The front-end uses React and Redux.  
+
+Note: The front-end is built on `react-dnd`, which does not support touch gestures, so the current site will not work on mobile.
 
 Development Environment Setup:
 1. Run `npm install` from the command line in the project's directory to install the bower dependencies.
