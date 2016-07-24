@@ -8,6 +8,7 @@ Development Environment Setup:
 3. A local installation of Postgres is required to run the app locally.  On a Mac, you can install [PostgresApp](http://postgresapp.com/) without any major changes, simply update `storyStack\settings\dev.py` to reflect your username. If not using PostgressApp, you will need to configure your installation to run with the database configuration used in settings.py.
 4. Run the local development server with `python manage.py runserver --settings=storyStack.settings.dev`
 
+
 The master branch automatically pushes to Heroku, to allow for user testing and remote development.  The current master can be viewed at [https://story-stack.herokuapp.com/](https://story-stack.herokuapp.com/).
 
 Notes on migrations:
