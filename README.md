@@ -4,7 +4,7 @@ This is Django-based site that currently implements an admin page and one app, w
 
 Note: The front-end is built on `react-dnd`, which does not support touch gestures, so the current site will not work on mobile.
 
-Development Environment Setup:
+## Development Environment Setup:
 1. Run `npm install` from the command line in the project's directory to install the bower dependencies.
 
 2. Use `pip` to install the dependencies listed in `requirements.txt`.
